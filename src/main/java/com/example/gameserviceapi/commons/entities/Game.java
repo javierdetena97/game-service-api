@@ -17,4 +17,5 @@ public class Game {
     private Long id;
 
     private String name;
+
 }

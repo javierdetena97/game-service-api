@@ -5,15 +5,23 @@ import com.example.gameserviceapi.commons.entities.Game;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping(ApiPathsVariables.V1_ROUTE + ApiPathsVariables.GAME_ROUTE)
 public interface GameApi {
 
+    @GetMapping("/all")
+    ResponseEntity<List<Game>> getAll();
+
+    @GetMapping("/{id}")
+    ResponseEntity<Game> getById(@PathVariable String id);
+
     @PostMapping
-    ResponseEntity<Game> saveGame(@RequestBody Game game);
+    ResponseEntity<Game> save(@RequestBody Game game);
 
-    @GetMapping
-    ResponseEntity<Game> getGameById(@PathVariable String id);
+    @PutMapping
+    ResponseEntity<Game> update(@RequestBody Game game);
 
-    @DeleteMapping
-    ResponseEntity<Void> deleteGame(@PathVariable String id);
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> delete(@PathVariable String id);
 }
