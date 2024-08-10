@@ -27,4 +27,14 @@ public class GameController implements GameApi {
         return ResponseEntity.ok(this.gameService.getGameById(id));
     }
 
+    @Override
+    public ResponseEntity<Void> deleteGame(String id) {
+        boolean isGameDeleted = this.gameService.deleteGame(id);
+        if (isGameDeleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

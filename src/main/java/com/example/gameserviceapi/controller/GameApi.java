@@ -13,4 +13,7 @@ public interface GameApi {
 
     @GetMapping
     ResponseEntity<Game> getGameById(@PathVariable String id);
+
+    @DeleteMapping
+    ResponseEntity<Void> deleteGame(@PathVariable String id);
 }

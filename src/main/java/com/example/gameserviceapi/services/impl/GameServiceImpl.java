@@ -27,4 +27,15 @@ public class GameServiceImpl implements GameService {
                 .orElseThrow(() -> new GameException(HttpStatus.NOT_FOUND, "Error finding game"));
     }
 
+    @Override
+    public boolean deleteGame(String id) {
+        Long gameId = Long.valueOf(id);
+        if (this.gameRepository.existsById(gameId)) {
+            this.gameRepository.deleteById(gameId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
