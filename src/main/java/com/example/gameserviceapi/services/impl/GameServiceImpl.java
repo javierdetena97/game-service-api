@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -35,26 +36,18 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game update(Game newGame) {
-        Long id = newGame.getId();
-        if (this.gameRepository.existsById(id)) {
-            Game dbGame = getById(id.toString());
-            dbGame.setName(newGame.getName());
-            return this.gameRepository.save(dbGame);
-        } else {
-            throw new GameException(HttpStatus.NOT_FOUND, "Game not found");
-        }
+    public Game update(String id, Game newGame) {
+        return Optional.of(newGame)
+                .map(game -> {
+                    game.setId(Long.valueOf(id));
+                    return this.gameRepository.save(game);
+                })
+                .orElseThrow(() -> new GameException(HttpStatus.NOT_FOUND, "Game not found"));
     }
 
     @Override
-    public boolean delete(String id) {
-        Long idL = Long.valueOf(id);
-        if (this.gameRepository.existsById(idL)) {
-            this.gameRepository.deleteById(idL);
-            return true;
-        } else {
-            return false;
-        }
+    public void delete(String id) {
+        gameRepository.deleteById(Long.valueOf(id));
     }
 
 }

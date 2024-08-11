@@ -19,8 +19,8 @@ public interface GameApi {
     @PostMapping
     ResponseEntity<Game> save(@RequestBody Game game);
 
-    @PutMapping
-    ResponseEntity<Game> update(@RequestBody Game game);
+    @PutMapping("/{id}")
+    ResponseEntity<Game> update(@PathVariable String id, @RequestBody Game game);
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(@PathVariable String id);

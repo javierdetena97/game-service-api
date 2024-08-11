@@ -12,8 +12,8 @@ public interface GameService {
 
     Game save(Game gameRequest);
 
-    Game update(Game gameRequest);
+    Game update(String id, Game gameRequest);
 
-    boolean delete(String id);
+    void delete(String id);
 
 }

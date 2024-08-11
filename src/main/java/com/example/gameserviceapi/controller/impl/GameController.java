@@ -36,19 +36,15 @@ public class GameController implements GameApi {
     }
 
     @Override
-    public ResponseEntity<Game> update(@RequestBody Game game) {
-        Game gameUpdated = this.gameService.update(game);
+    public ResponseEntity<Game> update(@PathVariable String id, @RequestBody Game game) {
+        Game gameUpdated = this.gameService.update(id, game);
         return ResponseEntity.ok(gameUpdated);
     }
 
     @Override
     public ResponseEntity<Void> delete(@PathVariable String id) {
-        boolean isGameDeleted = this.gameService.delete(id);
-        if (isGameDeleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        this.gameService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
