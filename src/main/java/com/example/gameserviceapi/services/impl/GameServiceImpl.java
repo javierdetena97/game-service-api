@@ -25,8 +25,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game getById(String id) {
-        return this.gameRepository.findById(Long.valueOf(id))
+    public Game getById(Long id) {
+        return this.gameRepository.findById(id)
                 .orElseThrow(() -> new GameException(HttpStatus.NOT_FOUND, "Game not found"));
     }
 
@@ -36,18 +36,18 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game update(String id, Game newGame) {
+    public Game update(Long id, Game newGame) {
         return Optional.of(newGame)
                 .map(game -> {
-                    game.setId(Long.valueOf(id));
+                    game.setId(id);
                     return this.gameRepository.save(game);
                 })
                 .orElseThrow(() -> new GameException(HttpStatus.NOT_FOUND, "Game not found"));
     }
 
     @Override
-    public void delete(String id) {
-        gameRepository.deleteById(Long.valueOf(id));
+    public void delete(Long id) {
+        gameRepository.deleteById(id);
     }
 
 }

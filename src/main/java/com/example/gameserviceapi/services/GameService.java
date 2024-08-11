@@ -8,12 +8,12 @@ public interface GameService {
 
     List<Game> getAll();
 
-    Game getById(String id);
+    Game getById(Long id);
 
     Game save(Game gameRequest);
 
-    Game update(String id, Game gameRequest);
+    Game update(Long id, Game gameRequest);
 
-    void delete(String id);
+    void delete(Long id);
 
 }

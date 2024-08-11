@@ -25,7 +25,7 @@ public class GameController implements GameApi {
     }
 
     @Override
-    public ResponseEntity<Game> getById(@PathVariable String id) {
+    public ResponseEntity<Game> getById(@PathVariable Long id) {
         return ResponseEntity.ok(this.gameService.getById(id));
     }
 
@@ -36,13 +36,13 @@ public class GameController implements GameApi {
     }
 
     @Override
-    public ResponseEntity<Game> update(@PathVariable String id, @RequestBody Game game) {
+    public ResponseEntity<Game> update(@PathVariable Long id, @RequestBody Game game) {
         Game gameUpdated = this.gameService.update(id, game);
         return ResponseEntity.ok(gameUpdated);
     }
 
     @Override
-    public ResponseEntity<Void> delete(@PathVariable String id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.gameService.delete(id);
         return ResponseEntity.noContent().build();
     }
