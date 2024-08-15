@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/games
+    url: jdbc:postgresql://localhost:5432/db
     username: postgres
     password: asdf1234
   jpa:
