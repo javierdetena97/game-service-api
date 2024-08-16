@@ -6,6 +6,7 @@ import com.example.gameserviceapi.services.GameService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -30,7 +31,9 @@ public class GameController implements GameApi {
     }
 
     @Override
-    public ResponseEntity<Game> save(@RequestBody Game game) {
+    public ResponseEntity<Game> save(@RequestHeader("userIdRequest") String userId, @RequestBody Game game) {
+        System.out.println(userId);
+
         Game gameCreated = this.gameService.save(game);
         return ResponseEntity.ok(gameCreated);
     }

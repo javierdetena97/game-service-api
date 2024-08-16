@@ -17,7 +17,7 @@ public interface GameApi {
     ResponseEntity<Game> getById(@PathVariable Long id);
 
     @PostMapping
-    ResponseEntity<Game> save(@RequestBody Game game);
+    ResponseEntity<Game> save(@RequestHeader("userIdRequest") String userId, @RequestBody Game game);
 
     @PutMapping("/{id}")
     ResponseEntity<Game> update(@PathVariable Long id, @RequestBody Game game);
