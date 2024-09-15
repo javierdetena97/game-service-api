@@ -10,7 +10,7 @@ public interface GameService {
 
     Game getById(Long id);
 
-    Game save(String userId, Game gameRequest);
+    Game save(Game gameRequest);
 
     Game update(Long id, Game gameRequest);
 
